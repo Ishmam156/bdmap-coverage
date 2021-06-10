@@ -1,0 +1,9 @@
+POST http://localhost:8000/api/visit
+Content-Type: application/json
+
+{
+        "description": "Market visit e onek gorom",
+        "photoURL": "https://scontent-sin6-1.xx.fbcdn.net/v/t1.6435-9/194409810_166326658838259_7059982290507931744_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=825194&_nc_eui2=AeH_qQ98O-omkIRVtfEoontO225zMRoDPVbbbnMxGgM9VvXLqWh3k6Iu0lci7GdpExU&_nc_ohc=8bUiU778Vb8AX93m6IJ&_nc_ht=scontent-sin6-1.xx&oh=bcb31aec4c6f40be97410e3e5f25558a&oe=60DD736A",
+        "visitors" : ["someID"],
+        "district" : "someOtherID"
+}

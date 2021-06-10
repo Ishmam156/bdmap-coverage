@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "paths": {
+      "@controllers/*": ["server/controllers/*"],
+      "@middleware/*": ["server/middleware/*"],
+      "@util/*": ["server/util/*"],
+      "@data/*": ["data/*"],
+      "Utilities/*": ["client/util/*"],
+      "Components/*": ["client/components/*"],
+      "Services/*": ["client/services/*"],
+      "Hooks/*": ["client/hooks/*"],
+      "Assets/*": ["client/assets/*"],
+      "@root/*": ["*"],
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

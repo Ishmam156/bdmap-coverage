@@ -1,0 +1,43 @@
+$mainColor: #19aaf8;
+$zeroColor: #d9f1fe;
+$singleColor: #9bdcfc;
+$doubleColor: #18a9f1;
+$stroke: #bcc5ca;
+
+body {
+    font-family: 'Roboto';
+    margin: 0;
+}
+
+.content {
+    padding: 10px;
+    min-height: calc(100vh - 10em);
+    display: flex;
+    flex-direction: column;
+}
+
+.mapColor-0 {
+    fill: $zeroColor;
+    stroke: $stroke;
+    stroke-width: 0.1%;
+}
+.mapColor-1 {
+    fill: $singleColor;
+    stroke: $stroke;
+    stroke-width: 0.1%;
+}
+.mapColor-2 {
+    fill: $doubleColor;
+    stroke: $stroke;
+    stroke-width: 0.1%;
+}
+.mapColor {
+    fill: $zeroColor;
+    stroke: $stroke;
+    stroke-width: 0.1%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
