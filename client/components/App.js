@@ -1,6 +1,8 @@
 import React from 'react'
 import { DSMapProvider } from './DSMapContext'
+import Drawer from 'Components/Drawer'
 import Router from 'Components/Router'
+
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './theme'
 
@@ -10,7 +12,9 @@ const App = () => {
         <>
             <DSMapProvider>
                 <ThemeProvider theme={theme}>
-                    <Router />
+                    <Drawer>
+                        <Router />
+                    </Drawer>
                 </ThemeProvider>
             </DSMapProvider>
         </>

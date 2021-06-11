@@ -7,7 +7,6 @@ import Login from 'Components/Login'
 import LogOut from 'Components/LogOut'
 import Users from 'Components/Users'
 import Profile from 'Components/Profile'
-import Drawer from 'Components/Drawer'
 import SingleDistrict from 'Components/SingleDistrict'
 
 const Router = () => {
@@ -23,45 +22,28 @@ const Router = () => {
         <div className="content">
             <Switch>
                 <Route exact path="/district/:name">
-                    <Drawer>
-                        <SingleDistrict
-                            name={districtName}
-                            distDefault={true}
-                        />
-                    </Drawer>
+                    <SingleDistrict name={districtName} distDefault={true} />
                 </Route>
                 <Route exact path="/districtupload/:name">
-                    <Drawer>
-                        <DistrictUpload name={uploadName} distDefault={true} />
-                    </Drawer>
+                    <DistrictUpload name={uploadName} distDefault={true} />
                 </Route>
                 <Route exact path="/districtupload">
-                    <Drawer>
-                        <DistrictUpload distDefault={false} />
-                    </Drawer>
+                    <DistrictUpload distDefault={false} />
                 </Route>
                 <Route exact path="/users">
-                    <Drawer>
-                        <Users />
-                    </Drawer>
+                    <Users />
                 </Route>
                 <Route exact path="/login">
-                    <Drawer>
-                        <Login />
-                    </Drawer>
+                    <Login />
                 </Route>
                 <Route exact path="/profile">
-                    <Drawer>
-                        <Profile />
-                    </Drawer>
+                    <Profile />
                 </Route>
                 <Route exact path="/logout">
                     <LogOut />
                 </Route>
                 <Route exact path="/">
-                    <Drawer>
-                        <FrontPage />
-                    </Drawer>
+                    <FrontPage />
                 </Route>
             </Switch>
         </div>
