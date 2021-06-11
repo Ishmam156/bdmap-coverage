@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 import DistrictSelect from 'Components/DistrictSelect'
 import ImageUpload from 'Components/ImageUpload'
+import Loading from 'Components/Loading'
 import UserSelect from 'Components/UserSelect'
 
-import { images } from 'Utilities/common'
 import imageService from '../../services/image'
 import districtNumbers from 'Utilities/district'
 import districtService from '../../services/district'
@@ -19,10 +19,13 @@ import Grid from '@material-ui/core/Grid'
 import Input from '@material-ui/core/Input'
 import Typography from '@material-ui/core/Typography'
 
+// Takes care of uploading a new visit
+// Function has become a bit too long and can be refactored to utilize helper functions/files
 const DistrictUpload = ({ name, distDefault }) => {
     const [user, , districts, setDistricts, users, , visit, setVisit, ,] =
         useContext(DSMapContext)
 
+    // States to keep track of upload information
     const [uploadedFile, setUploadedFile] = useState(null)
     const [uploadingStatus, setUploadingStatus] = useState(false)
     const [selectedFile, setSelectedFile] = useState(null)
@@ -33,14 +36,12 @@ const DistrictUpload = ({ name, distDefault }) => {
 
     const districtStats = districts.find((district) => district.name === name)
 
+    // Default loading screen
     if (distDefault && !districtStats) {
-        return (
-            <Grid container alignItems="center" justify="center">
-                <img src={images.loading} />
-            </Grid>
-        )
+        return <Loading />
     }
 
+    // Error page if not logged in
     if (!user) {
         return (
             <Grid container alignItems="center" justify="center" spacing={2}>
@@ -72,21 +73,21 @@ const DistrictUpload = ({ name, distDefault }) => {
         )
     }
 
+    // Helper function to get select option requirements
     const [districtOptions, defaultValue, userOptions, userDefault] =
         districtNumbers(name, districts, users, user, distDefault)
 
     if (!userDefault) {
-        return (
-            <Grid container alignItems="center" justify="center">
-                <img src={images.loading} />
-            </Grid>
-        )
+        return <Loading />
     }
 
+    // Form validation
     const handleSubmit = async (event) => {
         event.preventDefault()
+        // District unique ID
         const districtID = event.target[1].value
 
+        // Validation checks
         if (!districtID) {
             setMessage('District name must be provided')
             setMessageType('error')
@@ -119,15 +120,14 @@ const DistrictUpload = ({ name, distDefault }) => {
             return null
         }
 
+        // Getting colleagues unique ID
         let i
         const totalVisitors = []
         for (i = 5; i < event.target.length - 1; i++) {
             totalVisitors.push(event.target[i].value)
         }
 
-        console.log(totalVisitors)
-        console.log(user)
-
+        // Colleague validation and check if user is included or not
         if (totalVisitors[0] === '') {
             setMessage('Atleast a single colleague must be mentioned')
             setMessageType('error')
@@ -170,8 +170,6 @@ const DistrictUpload = ({ name, distDefault }) => {
 
         await imageService.uploadImage(data.url, selectedFile)
 
-        setUploadingStatus(false)
-
         const imageURL = data.url.split('?')[0]
 
         setUploadedFile(imageURL)
@@ -213,6 +211,9 @@ const DistrictUpload = ({ name, distDefault }) => {
                 }
             })
 
+            // State calls to render new state and set new state to context
+            setUploadingStatus(false)
+
             setVisit([...visit, newVisit])
             setDistrictID(districtID)
 
@@ -228,6 +229,7 @@ const DistrictUpload = ({ name, distDefault }) => {
         }
     }
 
+    // Main component
     return (
         <>
             {message && (
@@ -287,12 +289,8 @@ const DistrictUpload = ({ name, distDefault }) => {
                     <br />
                 </>
             )}
-            {uploadingStatus && (
-                <Grid container alignItems="center" justify="center">
-                    <img src={images.loading} />
-                </Grid>
-            )}
-            {uploadedFile && (
+            {uploadingStatus && <Loading />}
+            {uploadedFile && !uploadingStatus && (
                 <>
                     {districtID && (
                         <>
