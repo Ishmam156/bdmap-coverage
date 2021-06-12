@@ -10,7 +10,7 @@ The folder structure is as follows:
 
 frontend / client
 
-![Website Demo Image](https://imgur.com/27bPILg)
+![Website Demo Image](https://i.imgur.com/27bPILg.png)
 
 <pre>
 .
