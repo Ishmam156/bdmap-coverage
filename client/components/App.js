@@ -1,5 +1,5 @@
 import React from 'react'
-import { DSMapProvider } from './DSMapContext'
+import { DSMapProvider } from './MapContext'
 import Drawer from 'Components/Drawer'
 import Router from 'Components/Router'
 

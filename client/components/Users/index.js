@@ -1,4 +1,4 @@
-import { DSMapContext } from '../DSMapContext'
+import { DSMapContext } from '../MapContext'
 import React, { useContext } from 'react'
 import DataTable from 'Components/DataTable'
 

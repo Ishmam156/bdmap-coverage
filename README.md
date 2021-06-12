@@ -1,32 +1,55 @@
-# create-app
+# Bangladesh Map Coverage
 
-Simple boilerplate
+A full stack JS project based on the MERN stack of Bangladesh Map that can be used easily within organization and teams to keep track of employees/users and how much of the country they've travelled.
 
-# What?
+#### Website Demo (Desktop View)
 
-This boilerplate contains `React`, `express`, the required dependencies and a small amount of useful ones.
+![Website Desktop Image](https://i.imgur.com/27bPILg.png)
 
-The folder structure is as follows:
+#### Website Demo (Mobile View)
+
+![Website Mobile Image](https://i.imgur.com/I9B7YJ4.png)
+
+#### Technology used
+
+-   React on the front end
+-   Express web framework
+-   NodeJS web server
+-   MongoDB as database
+-   Amazon S3 Bucket for remote image hosting
+-   Material UI as UI Kit and styling
+
+## Folder Structure
 
 frontend / client
-
-![Website Demo Image](https://i.imgur.com/27bPILg.png)
 
 <pre>
 .
 ├── assets
 |   ├── custom.scss
 |   ├── favicon
-|   └── other-imporant-pictures.svg
+|   └── Loading.gif
+|   └── Logo.png
 ├── components
-|   ├── FrontPage
+|   ├── All Compononents in individual folders
 |   |   ├── index.js
-|   |   └── FrontPageSpecificComponent.js
 |   └── App.js
+|   └── ErrorBoundary.js
+|   └── MapContext.js
+|   └── Router.js
+|   └── theme.js
+├── hooks
+|   └── useField.js
+|   └── useScript.js
+├── services
+|   └── district.js
+|   └── image.js
+|   └── login.js
+|   └── users.js
+|   └── visit.js
 ├── util
-|   ├── services
-|   |   └── messages.js
 |   └── common.js
+|   └── district.js
 └── index.js
 </pre>
 

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { DSMapContext } from '../DSMapContext'
+import { DSMapContext } from '../MapContext'
 import { useHistory } from 'react-router-dom'
 
 // Handle user logout and doesn't render a new view, just takes back to home

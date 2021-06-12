@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { DSMapContext } from '../DSMapContext'
+import { DSMapContext } from '../MapContext'
 import { useHistory } from 'react-router-dom'
 
 import Loading from 'Components/Loading'

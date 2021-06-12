@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { DSMapContext } from '../DSMapContext'
+import { DSMapContext } from '../MapContext'
 import { Link } from 'react-router-dom'
 import { topDrawerLinks, bottomDrawerLinks, images } from 'Utilities/common'
 import { title, usersLabel } from 'Utilities/common'

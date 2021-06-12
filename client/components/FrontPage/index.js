@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { DSMapContext } from '../DSMapContext'
+import { DSMapContext } from '../MapContext'
 import { Link } from 'react-router-dom'
 
 import Loading from 'Components/Loading'

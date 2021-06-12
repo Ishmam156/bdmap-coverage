@@ -2,10 +2,10 @@ import React, { useState, useEffect, createContext } from 'react'
 import districtService from '../services/district'
 import usersService from '../services/users'
 import visitService from '../services/visit'
-export const DSMapContext = createContext()
+export const MapContext = createContext()
 
 // Create context to act as global states for entire application
-export const DSMapProvider = (props) => {
+export const MapProvider = (props) => {
     const [user, setUser] = useState(null)
     const [users, setUsers] = useState([])
     const [districts, setDistricts] = useState([])
@@ -50,7 +50,7 @@ export const DSMapProvider = (props) => {
     }
 
     return (
-        <DSMapContext.Provider
+        <MapContext.Provider
             value={[
                 user,
                 setUser,
@@ -64,6 +64,6 @@ export const DSMapProvider = (props) => {
             ]}
         >
             {props.children}
-        </DSMapContext.Provider>
+        </MapContext.Provider>
     )
 }

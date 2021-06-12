@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { DSMapContext } from '../DSMapContext'
+import { DSMapContext } from '../MapContext'
 import { Link } from 'react-router-dom'
 
 import DistrictSelect from 'Components/DistrictSelect'
