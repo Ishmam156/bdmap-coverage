@@ -19,6 +19,19 @@ A full stack JS project based on the MERN stack of Bangladesh Map that can be us
 -   Amazon S3 Bucket for remote image hosting
 -   Material UI as UI Kit and styling
 
+#### Set-up Instructions
+
+-   For development, make sure to set up .env file with the appropiate information. The keys have been provided and the values need to be populated there. In most production solutions, the environment variables should be easy to provide globally.
+-   It might be wise to set up 2 databases, one for development and one for production. The server side has been programmed to check the enivornment variable, and based on that it will either choose the production DB or the development DB.
+-   The app currently is based on MongoDB. To start a boilerplate version of the app, a mongoDB account will be needed and the mongoose.js file can be used to set up the distrcts in the DB as well as the Employees in the DB. Further details are provided in the mongoose.js file.
+-   Change the title of the website at the root level index.html file
+-   Set up AWS S3 bucket to enable remote image uploading and add the access information in the .env file. This [video](https://www.youtube.com/watch?v=yGYeYJpRWPM) was of great help.
+-   Change the global colors in `client/assets/custom.scss` to style the map accordinly. A main color is provided for the overall website as well as 3 color shades for the map ranging from 0 to double.
+-   Change the global palette colors in `client/components/theme.js` to style the website accordinly. This can be done to ensure your organization or team's preferred color is used everywhere in the website.
+-   Change the global long and short title of website in `client/util/common.js` to ensure website has the appropiate navbar title on desktop and mobile view.
+-   Change the logo, favicon and loading gif in `client/assets` to ensure website has the common images that you want.
+-   You can check out the `client/services` directory to see how the API URLs are set up. Ideally the routes should work out of the box.
+
 ## Folder Structure
 
 frontend / client
@@ -26,13 +39,13 @@ frontend / client
 <pre>
 .
 ├── assets
-|   ├── custom.scss
-|   ├── favicon
+|   └── custom.scss
+|   └── favicon
 |   └── Loading.gif
 |   └── Logo.png
 ├── components
 |   ├── All Compononents in individual folders
-|   |   ├── index.js
+|   |   └── index.js
 |   └── App.js
 |   └── ErrorBoundary.js
 |   └── MapContext.js
@@ -58,9 +71,21 @@ backend / server
 <pre>
 .
 ├── controllers
-|   └── messagesController.js
+|   └── districtController.js
+|   └── imageController.js
+|   └── loginController.js
+|   └── userController.js
+|   └── visitController.js
 ├── middleware
 |   └── errorMiddleware.js
+├── models
+|   └── districts.js
+|   └── index.js
+|   └── users.js
+|   └── visits.js
+├── requests
+|   ├── login.rest
+|   ├── visit.rest
 ├── util
 |   ├── common.js
 |   ├── customErrors.js
@@ -68,9 +93,17 @@ backend / server
 └── index.js
 </pre>
 
-Most of which is familiar through the course. In addition there are the files in the root.
+data / starter data
 
-## root files
+<pre>
+.
+└── bdDistrict.js
+└── EmployeeList.js
+</pre>
+
+In addition there are the files in the root.
+
+### root files
 
 #### .eslintrc
 
@@ -78,21 +111,13 @@ Most of which is familiar through the course. In addition there are the files in
 
 The .eslintignore file contains some folders / files that we don't want to be stylechecked.
 
-Consider using `prettier`!
-
 #### babel.config.js
 
-"Use next generation JavaScript, today." https://babeljs.io/
-
-You've used `babel` since the beginning. Check [here](https://reactjs.org/docs/react-without-jsx.html) for more information. This config file basically tells it that we want to do React.
+This config file basically tells it that we want to do React.
 
 #### index.html
 
-This is the template that will be turned to the html loaded by the browser first. You can throw in whatever you want, like google analytics scripts or meta tags such as this mobile friendly one:
-
-```html
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-```
+This is the template that will be turned to the html loaded by the browser first. You can throw in whatever you want, like google analytics scripts or meta tags such as this mobile friendly one. Make sure to change the `title` tag here based on your websites title.
 
 #### index.js
 
@@ -100,17 +125,11 @@ This is the entrypoint when starting the application.
 
 It has `dotenv` so you can use .env file in the root to hide your environment variables (.env is in the .gitignore)
 
-It has `express-async-errors` so you can just let the error middleware catch errors. See server/controllers/messagesController.js for example with a custom error.
+It has `express-async-errors` so you can just let the error middleware catch errors.
 
-The backend lives in /api
-
-`Chokidar` is for watching changes in backend files. Using nodemon would lead to webpack rebuilding frontend every time we make a change to a controller. The project uses nodemon to restart the server when files in the root change and restart may be required (see package.json).
+The backend lives in `/api` route
 
 Other requests than /api will go to the frontend
-
-When not in production we want to use webpack dev & hot loading middlewares. They make it so that changes to frontend code are seen without refreshing the page.
-
-In production it just serves the static files.
 
 #### jsconfig.json
 
@@ -119,6 +138,10 @@ The boilerplate is using `module-alias` to help with requires in backend and `we
 For frontend see webpack.config.js and, for example, client/index.js for examples with the requires (Components/...)
 
 For backend see package.json and, for example, server/index.js for examples with the requires (@util/...)
+
+#### mongoose.js
+
+The file will allow the user to populate the backend database with data while running it through the command line like `node mongoose.js <password>`. You will need to provide the MongoDB url inside the file and then initially run the District creation and then set up the Employee creation. Kindly look at the Employee Data file inside `data` directory to see how the database is expecting the values.
 
 #### webpack.config.js
 
@@ -133,18 +156,10 @@ From top to bottom:
 -   You have process.env.NODE_ENV available in frontend code, (process.env.BUILT_AT has been useful as well, so it's available)
 -   Use the index.html as a template and set up favicon from the assets.
 
-### What are the common.js files?
+#### common.js
 
 config/common.js is for project wide common stuff. Such as "Are we in production or not" boolean inProduction. This is imported and exported by both client and server common.js.
 
 client/util/common.js is for frontend wide common stuff, used with "Utilities/common" (includes everything from config/common.js)
 
 server/util/common.js is for backend wide common stuff, used with "@util/common" (includes everything from config/common.js)
-
-### What is custom.scss
-
-Write your frontend custom styles there. https://stackoverflow.com/questions/46400443/what-is-the-difference-between-css-and-scss
-
-## Stuff left out on purpose
-
-Redux, GraphQL, database solution and css frameworks. You decide.
