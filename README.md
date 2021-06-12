@@ -32,6 +32,7 @@ A full stack JS project based on the MERN stack of Bangladesh Map that can be us
 -   Change the global long and short title of website in `client/util/common.js` to ensure website has the appropriate navbar title on desktop and mobile view.
 -   Change the logo, favicon and loading gif in `client/assets` to ensure website has the common images that you want.
 -   You can check out the `client/services` directory to see how the API URLs are set up. Ideally, the routes should work out of the box.
+-   The project opts for useContext hook of React instead of implementing a solution with Redux. Looking into the MapContext file can provide a view of the globally accessible state and its values.
 
 ## Folder Structure
 
