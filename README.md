@@ -2,24 +2,36 @@
 
 A full stack JS project based on the MERN stack of Bangladesh Map that can be used easily within organization and teams to keep track of employees/users and how much of the country they've travelled.
 
-### Website Demo (Desktop View)
+## Demo
+
+#### Desktop View
 
 ![Website Desktop Image](https://i.imgur.com/27bPILg.png)
 
-### Website Demo (Mobile View)
+#### Mobile View
 
 ![Website Mobile Image](https://i.imgur.com/I9B7YJ4.png)
 
-## Technology used
+## Tech Stack
 
--   React on the front end
--   Express web framework
--   NodeJS web server
--   MongoDB as database
--   Amazon S3 Bucket for remote image hosting
--   Material UI as UI Kit and styling
+**Client:** React, Material UI
 
-## Set-up Instructions
+**Server:** Node, Express
+
+**Database:** MongoDB
+
+**Image:** Amazon S3
+
+## Features
+
+-   All districts of Bangladesh in SVG path
+-   Employees can be selected from easy select menu
+-   Images uploaded to Amazon S3 bucket
+-   Instant coloring of map based on number of times district visited
+-   Counters and visit stats are updated realtime
+-   Desktop and Mobile View ready
+
+## Installation
 
 -   For development, make sure to set up .env file with the appropriate information. The keys have been provided and the values need to be populated there. In most production solutions, the environment variables should be easy to provide globally.
 -   It might be wise to set up 2 databases, one for development and one for production. The server side has been programmed to check the environment variable, and based on that it will either choose the production DB or the development DB.
@@ -34,139 +46,104 @@ A full stack JS project based on the MERN stack of Bangladesh Map that can be us
 -   You can check out the `client/services` directory to see how the API URLs are set up. Ideally, the routes should work out of the box.
 -   The project opts for useContext hook of React instead of implementing a solution with Redux. Looking into the MapContext file can provide a view of the globally accessible state and its values.
 
-## Folder Structure
+## Environment Variables
 
-frontend / client
+To run this project, you will need to add the following environment variables to your .env file
 
-<pre>
-.
-├── assets
-|   └── custom.scss
-|   └── favicon
-|   └── Loading.gif
-|   └── Logo.png
-├── components
-|   ├── All Components in individual folders
-|   |   └── index.js
-|   └── App.js
-|   └── ErrorBoundary.js
-|   └── MapContext.js
-|   └── Router.js
-|   └── theme.js
-├── hooks
-|   └── useField.js
-|   └── useScript.js
-├── services
-|   └── district.js
-|   └── image.js
-|   └── login.js
-|   └── users.js
-|   └── visit.js
-├── util
-|   └── common.js
-|   └── district.js
-└── index.js
-</pre>
+`AWS_ACCESS_KEY_ID` - Your AWS access key
 
-backend / server
+`AWS_SECRET_ACCESS_KEY` - - Your AWS secret access key
 
-<pre>
-.
-├── controllers
-|   └── districtController.js
-|   └── imageController.js
-|   └── loginController.js
-|   └── userController.js
-|   └── visitController.js
-├── middleware
-|   └── errorMiddleware.js
-├── models
-|   └── districts.js
-|   └── index.js
-|   └── users.js
-|   └── visits.js
-├── requests
-|   ├── login.rest
-|   ├── visit.rest
-├── util
-|   ├── common.js
-|   ├── customErrors.js
-|   └── routes.js
-└── index.js
-</pre>
+`MONGODB_URI` - Your URL to the production MongoDB
 
-data / starter data
+`MONGODB_URI_TEST` - Your URL to the development MongoDB
 
-<pre>
-.
-└── bdDistrict.js
-└── EmployeeList.js
-</pre>
+`SECRET` - Your string for JWT token.
 
-In addition to the above, these are the files in the root.
+## API Reference
 
-### root files
+#### Get all district paths and visit count
 
-#### .eslintrc
+```http
+  GET /api/districts
+```
 
-`Eslint` checks for styles. This file makes it use airbnb rules with some modifications. Feel free to custom to your liking or even remove. Use eslint plugin for vscode to get information.
+#### Get Image Upload URL
 
-The .eslintignore file contains some folders / files that we don't want to be stylechecked.
+```http
+  GET /api/imageupload
+```
 
-#### babel.config.js
+| Header  | Type     | Description                              |
+| :------ | :------- | :--------------------------------------- |
+| `token` | `string` | **Required**. login token to verify user |
 
-This config file basically tells it that we want to do React.
+#### Get all Users
 
-#### index.html
+```http
+  GET /api/users
+```
 
-This is the template that will be turned to the html loaded by the browser first. You can throw in whatever you want, like google analytics scripts or meta tags such as this mobile friendly one. Make sure to change the `title` tag here based on your websites title.
+#### Get all completed visits
 
-#### index.js
+```http
+  GET /api/visit
+```
 
-This is the entrypoint when starting the application.
+| Header  | Type     | Description                              |
+| :------ | :------- | :--------------------------------------- |
+| `token` | `string` | **Required**. login token to verify user |
 
-It has `dotenv` so you can use .env file in the root to hide your environment variables (.env is in the .gitignore)
+#### District update
 
-It has `express-async-errors` so you can just let the error middleware catch errors.
+```http
+  PUT /api/districts/:id
+```
 
-The backend lives in `/api` route
+| Parameter | Type     | Description                                           |
+| :-------- | :------- | :---------------------------------------------------- |
+| `id`      | `string` | **Required**. id of district that needs to be updated |
 
-Other requests than `/api` will go to the frontend
+#### User Login
 
-#### jsconfig.json
+```http
+  POST /api/login
+```
 
-The project is using `module-alias` to help with requires in backend and `webpack` to help with imports in frontend. jsconfig.json helps visual studio code to understand what the imports are.
+#### Add Visit
 
-For frontend see webpack.config.js and, for example, client/index.js for examples with the requires (Components/...)
+```http
+  POST /api/visit
+```
 
-For backend see package.json and, for example, server/index.js for examples with the requires (@util/...)
+## Deployment
 
-#### mongoose.js
+To deploy this project run
 
-The file will allow the user to populate the backend database with data while running it through the command line like `node mongoose.js <password>`. You will need to provide the MongoDB URL inside the file and then initially run the District creation and then set up the Employee creation. Kindly look at the Employee Data file inside `data` directory to see how the database is expecting the values.
+```bash
+  npm run build
+  npm run start
+```
 
-#### webpack.config.js
+## Acknowledgements
 
-Webpack stuff.
-From top to bottom:
-
--   Uses hot loading when in development mode
--   Has the aliases for frontend
--   Uses babel-loader for js files,
--   Uses style-loader, css-loader and sass-loader for the style file (custom.scss)
--   Uses file-loader for other files
--   You have process.env.NODE_ENV available in frontend code, (process.env.BUILT_AT has been useful as well, so it's available)
--   Use the index.html as a template and set up favicon from the assets.
-
-#### common.js
-
-config/common.js is for project wide common stuff. Such as "Are we in production or not" boolean inProduction. This is imported and exported by both client and server common.js.
-
-client/util/common.js is for frontend wide common stuff, used with "Utilities/common" (includes everything from config/common.js)
-
-server/util/common.js is for backend wide common stuff, used with "@util/common" (includes everything from config/common.js)
-
-## Special Mentions
-
--   Full-Stack Open [course](https://fullstackopen.com/en/) from the University of Helsinki provided a lot of the foundation this is based on.
+-   [Full-Stack Open](https://fullstackopen.com/en/) from the University of Helsinki provided a lot of the foundation this is based on.
 -   The project was based on this [boilerplate](https://github.com/fullstack-hy2020/create-app) code and structure.
+
+## License
+
+[ISC](https://choosealicense.com/licenses/isc/)
+
+## Authors
+
+-   [@Ishmam156](https://github.com/Ishmam156)
+
+## Contributing
+
+Contributions are always welcome!
+
+Kindly generate a `pull request` with your contribution.
+
+## Feedback
+
+If you have any feedback, please reach out to me at ishmam156@gmail.com
