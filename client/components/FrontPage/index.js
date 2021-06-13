@@ -54,6 +54,11 @@ const FrontPage = () => {
         return <Loading />
     }
 
+    // Loading GIF
+    if (user && !visit) {
+        return <Loading />
+    }
+
     return (
         <Grid
             item

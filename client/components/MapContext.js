@@ -9,7 +9,7 @@ export const MapProvider = (props) => {
     const [user, setUser] = useState(null)
     const [users, setUsers] = useState([])
     const [districts, setDistricts] = useState([])
-    const [visit, setVisit] = useState([])
+    const [visit, setVisit] = useState(null)
 
     // Use effect calls to get information from API at mount
     useEffect(() => {
@@ -40,7 +40,7 @@ export const MapProvider = (props) => {
 
     // Provide visit details if only user logged in
     let visitCount = []
-    if (user) {
+    if (user && visit) {
         visit.forEach((item) => {
             let filterVisitors = item.visitors.map((visitor) => visitor.name)
             if (filterVisitors.includes(user.name)) {
