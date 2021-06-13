@@ -135,7 +135,7 @@ Other requests than `/api` will go to the frontend
 
 #### jsconfig.json
 
-The boilerplate is using `module-alias` to help with requires in backend and `webpack` to help with imports in frontend. jsconfig.json helps visual studio code to understand what the imports are.
+The project is using `module-alias` to help with requires in backend and `webpack` to help with imports in frontend. jsconfig.json helps visual studio code to understand what the imports are.
 
 For frontend see webpack.config.js and, for example, client/index.js for examples with the requires (Components/...)
 
@@ -169,3 +169,4 @@ server/util/common.js is for backend wide common stuff, used with "@util/common"
 ## Special Mentions
 
 -   Full-Stack Open [course](https://fullstackopen.com/en/) from the University of Helsinki provided a lot of the foundation this is based on.
+-   The project was based on this [boilerplate](https://github.com/fullstack-hy2020/create-app) code and structure.
