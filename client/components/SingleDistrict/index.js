@@ -9,13 +9,13 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-const SingleDistrict = ({ name, distDefault }) => {
+const SingleDistrict = ({ name }) => {
     const [user, , districts, , , , visit, ,] = useContext(DSMapContext)
 
     const districtStats = districts.find((district) => district.name === name)
 
     // Default loading screen
-    if (distDefault && !districtStats) {
+    if (!districtStats) {
         return <Loading />
     }
 

@@ -22,7 +22,7 @@ const Router = () => {
         <div className="content">
             <Switch>
                 <Route exact path="/district/:name">
-                    <SingleDistrict name={districtName} distDefault={true} />
+                    <SingleDistrict name={districtName} />
                 </Route>
                 <Route exact path="/districtupload/:name">
                     <DistrictUpload name={uploadName} distDefault={true} />
