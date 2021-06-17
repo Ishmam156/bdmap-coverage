@@ -2,6 +2,19 @@
 
 A full stack JS project based on the MERN stack of Bangladesh Map that can be used easily within organization and teams to keep track of employees/users and how much of the country they've travelled.
 
+## Live Website
+
+```http
+  http://fierce-refuge-94530.herokuapp.com/
+```
+
+#### Testing Credentials
+
+```
+  Username: Hagrid
+  Password: 333
+```
+
 ## Demo
 
 #### Desktop View
@@ -11,6 +24,10 @@ A full stack JS project based on the MERN stack of Bangladesh Map that can be us
 #### Mobile View
 
 ![Website Mobile Image](https://i.imgur.com/I9B7YJ4.png)
+
+#### Video of Features
+
+[![BD Map Coverage](https://i.imgur.com/k8EMukl.png)](https://www.youtube.com/watch?v=AA_GDKjWJAs "BD Map Coverage")
 
 ## Tech Stack
 
