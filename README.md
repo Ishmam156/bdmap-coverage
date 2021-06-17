@@ -10,9 +10,13 @@ A full stack JS project based on the MERN stack of Bangladesh Map that can be us
 
 #### Testing Credentials
 
+Username
 ```
-  Username: Hagrid
-  Password: 333
+  Hagrid
+```
+Password
+```
+  333
 ```
 
 ## Demo
