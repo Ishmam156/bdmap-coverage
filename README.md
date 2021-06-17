@@ -41,7 +41,7 @@ Password
 
 **Database:** MongoDB
 
-**Image:** Amazon S3
+**Image Hosting:** Amazon S3
 
 ## Features
 
